@@ -26,18 +26,23 @@ Right now, the code only consists of the evaluation part. We are collating the t
     pip install -r requirements.txt
     ```
 2. Set up datasets:
+    Download datasets which are formatted by [PVNet](https://github.com/zju3dv/clean-pvnet):
+
+    (1). [linemod](https://zjueducn-my.sharepoint.com/:u:/g/personal/pengsida_zju_edu_cn/EXK2K0B-QrNPi8MYLDFHdB8BQm9cWTxRGV9dQgauczkVYQ?e=beftUz)
+
+    (2). [occlusion linemod](https://zjueducn-my.sharepoint.com/:u:/g/personal/pengsida_zju_edu_cn/ESXrP0zskd5IvvuvG3TXD-4BMgbDrHZ_bevurBrAcKE5Dg?e=r0EgoA)
+
+    Download the simplified mesh models for each object [here](https://ussteducn-my.sharepoint.com/:u:/g/personal/wuchenrui_usst_edu_cn/EaTRLzrbFgxMnJpKLYh2w7ABWtK4-xfrLAmJ9my66uzTKw?e=5sMqkw). Unzip the file and copy it to linemode dataset.
+
+    Make soft links to the datasets.
     ```
     ROOT=/path/to/gsgmn
-    cd $ROOT/data
+    cd $ROOT
+    mkdir data
+    cd data
     ln -s /path/to/linemod linemod
     ln -s /path/to/occlusion_linemod occlusion_linemod
-
-Download datasets which are formatted by [PVNet](https://github.com/zju3dv/clean-pvnet):
-1. [linemod](https://zjueducn-my.sharepoint.com/:u:/g/personal/pengsida_zju_edu_cn/EXK2K0B-QrNPi8MYLDFHdB8BQm9cWTxRGV9dQgauczkVYQ?e=beftUz)
-
-2. [occlusion linemod](https://zjueducn-my.sharepoint.com/:u:/g/personal/pengsida_zju_edu_cn/ESXrP0zskd5IvvuvG3TXD-4BMgbDrHZ_bevurBrAcKE5Dg?e=r0EgoA)
-
-Download the simplified mesh models for each object [here](https://ussteducn-my.sharepoint.com/:u:/g/personal/wuchenrui_usst_edu_cn/EaTRLzrbFgxMnJpKLYh2w7ABWtK4-xfrLAmJ9my66uzTKw?e=5sMqkw). Unzip the file and copy it to linemode dataset.
+    ```
 
 ## Testing
 
