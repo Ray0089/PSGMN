@@ -1,0 +1,10 @@
+/model/
+/data/
+****/*.tar
+****/*.pkl
+****__pycache__
+*****.pyc
+****/*.so
+build
+****/knn
+.vscode

@@ -1,0 +1,13 @@
+Cython==0.28.2
+cyglfw3==3.1.0.2
+matplotlib==3.2.1
+opencv-python==4.4.0.42
+pandas==1.0.3
+Pillow==7.2.0
+plyfile==0.7.2
+scikit-image==0.17.2
+scikit-learn==0.23.1
+scipy==1.4.1
+tqdm==4.28.1
+yacs==0.1.4
+
