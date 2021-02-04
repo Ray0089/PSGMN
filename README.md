@@ -24,7 +24,7 @@ code for paper "Pseudo-Siamese Graph Matching Network for Texture-less Objects' 
     ```
     pip install -r requirements.txt
     ```
-    ### compile the c++ codes
+    ### compile the cuda extension
     ```
     cd csrc
     python setup.py build_ext --inplace 
