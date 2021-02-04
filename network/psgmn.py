@@ -8,6 +8,7 @@ from torch_geometric.data import Data
 import torch_geometric.transforms as T
 import numpy as np
 from utils.utils import load_ply,read_ply_to_data
+from csrc.node_index_projection import node_project,resize_mask,resize_img
 
 class psgmn(torch.nn.Module):
 
@@ -32,7 +33,7 @@ class psgmn(torch.nn.Module):
         self.register_buffer('mesh_graph_x',x)
         self.register_buffer('mesh_graph_edge_index',edge_idx)
         self.register_buffer('mesh_graph_edge_attr',edge_attr)
-        self.register_buffer('const_one',torch.tensor(1))
+        #self.register_buffer('const_one',torch.tensor(1))
      
         self.img_in_channels = img_in_channels
         self.mesh_in_channels = mesh_in_channels

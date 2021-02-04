@@ -1,7 +1,6 @@
 # PSGMN
 code for paper "Pseudo-Siamese Graph Matching Network for Texture-less Objects' 6D Pose Estimation"
 
-Right now, the code only consists of the evaluation part. We are collating the training part of the code. It will be available when we finish the clean-up.
 ## Installation
 
 1. Set up the python environment:
@@ -43,7 +42,13 @@ Right now, the code only consists of the evaluation part. We are collating the t
     ln -s /path/to/linemod linemod
     ln -s /path/to/occlusion_linemod occlusion_linemod
     ```
-
+## Training
+Take the training on `cat` as an example.
+   run
+   ```
+   python main_psgmn.py --class_type --train True
+   
+   ```
 ## Testing
 
 ### Testing on Linemod
@@ -56,6 +61,6 @@ Take the testing on `cat` as an example.
 1. Download the pretrained model of `cat` and put it to `$ROOT/model/cat/200.pth`.
 2. Test:
     ```
-    python main_psgmn.py --class_type cat
-    python main_psgmn.py --class_type cat --occ True
+    python main_psgmn.py --class_type cat --eval True
+    python main_psgmn.py --class_type cat --occ True --eval True
     ```
