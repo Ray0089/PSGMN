@@ -1,5 +1,5 @@
 # PSGMN
-code for paper "Pseudo-Siamese Graph Matching Network for Texture-less Objects' 6D Pose Estimation"
+code for paper "Pseudo-Siamese Graph Matching Network for Textureless Objects' 6D Pose Estimation"
 
 ## Installation
 
