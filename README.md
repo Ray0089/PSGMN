@@ -24,6 +24,11 @@ code for paper "Pseudo-Siamese Graph Matching Network for Texture-less Objects' 
     ```
     pip install -r requirements.txt
     ```
+    ### compile the c++ codes
+    ```
+    cd csrc
+    python setup.py build_ext --inplace 
+    ```
 2. Set up datasets:
     Download datasets which are formatted by [PVNet](https://github.com/zju3dv/clean-pvnet):
 
@@ -47,7 +52,6 @@ Take the training on `cat` as an example.
    run
    ```
    python main_psgmn.py --class_type --train True
-   
    ```
 ## Testing
 
