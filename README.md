@@ -1,5 +1,17 @@
 # PSGMN
-code for paper "Pseudo-Siamese Graph Matching Network for Textureless Objects' 6D Pose Estimation"
+code for paper "Pseudo-Siamese Graph Matching Network for Textureless Objects' 6D Pose Estimation". 
+If you find this code useful for your research, please consider citing our paper with the following BibTeX entry.
+```
+@ARTICLE{psgmn,
+  author={C. {Wu} and L. {Chen} and Z. {He} and J. {Jiang}},
+  journal={IEEE Transactions on Industrial Electronics}, 
+  title={Pseudo-Siamese Graph Matching Network for Textureless Objects' 6D Pose Estimation}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TIE.2021.3070501}}
+``` 
 
 ## Installation
 
@@ -51,7 +63,7 @@ code for paper "Pseudo-Siamese Graph Matching Network for Textureless Objects' 6
 Take the training on `cat` as an example.
    run
    ```
-   python main_psgmn.py --class_type --train True
+   python main_psgmn.py --class_type cat --train True
    ```
 ## Testing
 
