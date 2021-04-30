@@ -74,7 +74,7 @@ We provide the pretrained models of objects on Linemod, which can be found at [h
 Take the testing on `cat` as an example.
 
 
-1. Download the pretrained model of `cat` and put it to `$ROOT/model/cat/200.pth`.
+1. Download the pretrained model of `cat` and put it to `$ROOT/model/cat/200.pkl`.
 2. Test:
     ```
     python main_psgmn.py --class_type cat --eval True
