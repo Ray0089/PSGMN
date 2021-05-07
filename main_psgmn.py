@@ -1,10 +1,8 @@
 import os.path as osp
 import os
-import numpy as np
 import argparse
 import torch
 import torch_geometric.transforms as T
-from torch_geometric.nn import DataParallel
 from torch.utils.data import DataLoader
 from dataset.linemod import LineModDataset
 from network.psgmn import psgmn
@@ -74,18 +72,15 @@ def load_network(net, model_dir, resume=True, epoch=-1, strict=False):
 def main(args):
 
     # load dataset
-    train_datasets = []
-    test_datasets = []
-
     train_set = LineModDataset(args.data_path, args.class_type)
     test_set = LineModDataset(
         args.data_path, args.class_type, is_train=False, occ=args.occ
     )
 
     train_loader = DataLoader(
-        train_set, batch_size=args.batch_size, shuffle=True, num_workers=8
+        train_set, batch_size=args.batch_size, shuffle=True, num_workers=12
     )
-    test_loader = DataLoader(test_set, batch_size=args.batch_size, num_workers=8)
+    test_loader = DataLoader(test_set, batch_size=args.batch_size, num_workers=12)
 
     device = torch.device(
         "cuda:0,1,2,3" if cuda else "cpu"
@@ -96,6 +91,7 @@ def main(args):
     )
 
     psgmnet = psgmn(mesh_model_dir)
+    
     psgmnet = torch.nn.DataParallel(psgmnet, device_ids=[0, 1, 2, 3])
     psgmnet = psgmnet.to(device)
     optimizer = torch.optim.Adam(psgmnet.parameters(), lr=args.lr)
@@ -128,13 +124,13 @@ def main(args):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--eval", type=bool, default=False)
+    parser.add_argument("--eval", type=bool, default=True)
     parser.add_argument("--data_path", type=str, default="data")
     parser.add_argument("--class_type", type=str, default="ape")
     parser.add_argument("--lr", type=float, default=0.001)
-    parser.add_argument("--batch_size", type=int, default=16)
+    parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--epochs", type=int, default=200)
-    parser.add_argument("--train", type=bool, default=False)
+    parser.add_argument("--train", type=bool, default=True)
     parser.add_argument("--gpu_id", help="GPU_ID", type=str, default="0,1,2,3")
     parser.add_argument("--occ", type=bool, default=False)
     parser.add_argument("--used_epoch", type=int, default=-1)

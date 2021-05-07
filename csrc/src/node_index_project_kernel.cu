@@ -193,14 +193,17 @@ void triangle_validate_kernel(
         float x = m_y*n_z - n_y*m_z;
         float y = m_z*n_x - n_z*m_x;
         float z = m_x*n_y - n_x*m_y;
-        //if (z==0) continue;
-        bool a = (1.0 - (x+y) / (z+1e-6))>=0;
-        bool b = (y / (z+1e-6))>=0;
-        bool c = (x / (z+1e-6))>=0;
-        bool d = abs(z)>=1.0;
+        
+        float alpha = x / (z+1e-6);
+        float beta = y / (z+1e-6);
+        float gamma = 1.0 - (x+y) / (z+1e-6);
+        bool a = (gamma>=0);
+        bool b = (alpha>=0);
+        bool c = (beta>=0);
+        bool d = (abs(z)>=1.0);
         if(!(a&&b&&c&&d)) continue;
         
-        float mean_z = (mesh_projected_z[p0] + mesh_projected_z[p1] + mesh_projected_z[p2]);
+        float mean_z = (gamma*mesh_projected_z[p0] + alpha*mesh_projected_z[p1] + beta*mesh_projected_z[p2]);
         
         if(minimum_z > mean_z)
         {

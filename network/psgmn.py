@@ -4,7 +4,6 @@ from torch.nn import Linear as Lin
 import torch.nn.functional as F
 from torch_geometric.nn import SplineConv
 from .resnet import resnet18
-from torch_geometric.data import Data
 import torch_geometric.transforms as T
 import numpy as np
 from utils.utils import load_ply,read_ply_to_data
@@ -45,7 +44,7 @@ class psgmn(torch.nn.Module):
         self.img_dim = img_dim
         self.mesh_dim = mesh_dim
 
-        self.lin = Lin
+        self.lin = lin
         self.cat = cat
         self.dropout = dropout
         self.img_convs = torch.nn.ModuleList()
@@ -71,7 +70,7 @@ class psgmn(torch.nn.Module):
             self.out_channels = out_channels
             self.mesh_final = Lin(mesh_in_channel,out_channels)
         else:
-            self.out_channels = in_channels
+            self.out_channels = mesh_in_channels
 
         # Load the pretrained weights, remove avg pool
         # layer and get the output stride of 8
@@ -247,7 +246,7 @@ class psgmn(torch.nn.Module):
 
         if self.lin:
             meshes = self.mesh_final(meshes)
-         
+        
         if self.training:
             idx = torch.where(mask.reshape(-1))[0]
             
@@ -261,15 +260,18 @@ class psgmn(torch.nn.Module):
 
         if self.training:
 
-            S = S.unsqueeze(0)
+            S = S.permute(1,0)
             device = S.device
 
             mesh_pts_ind = torch.masked_select(node_index,mask.bool())
 
             valid_pts_ind = torch.where(mesh_pts_ind != torch.tensor(-1,device=device))[0]
-            mesh_pts_ind=mesh_pts_ind.unsqueeze(0)
 
-            match_loss_ = self.loss_fn(S[:,:,valid_pts_ind],mesh_pts_ind[:,valid_pts_ind].long())
+            S = S[valid_pts_ind,:]
+            mesh_pts_ind = mesh_pts_ind[valid_pts_ind].long()
+
+
+            match_loss_ = self.loss_fn(S,mesh_pts_ind)
             seg_loss_ = self.seg_loss(seg,mask.long()) * self.sigma
 
             loss={}

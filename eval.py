@@ -1,10 +1,7 @@
 import os.path as osp
-import os
 import torch
 import tqdm
-from dataset.linemod import LineModDataset
 from utils.utils import load_ply, project,mesh_project
-from network.psgmn import psgmn
 import numpy as np
 import cv2
 from scipy import spatial

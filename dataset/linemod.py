@@ -4,10 +4,8 @@ from PIL import Image
 from utils.transforms import rotate_img
 from utils.utils import load_ply
 import glob, pickle
-import torch_geometric.transforms as T
 import numpy as np
 import os.path as osp
-import matplotlib.pyplot as plt
 
 
 linemod_K = np.array(
