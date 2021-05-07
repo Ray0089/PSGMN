@@ -60,10 +60,10 @@ If you find this code useful for your research, please consider citing our paper
     ln -s /path/to/occlusion_linemod occlusion_linemod
     ```
 ## Training
-Take the training on `cat` as an example.
+Take the training on `ape` as an example.
    run
    ```
-   python main_psgmn.py --class_type cat --train True
+   python main_psgmn.py --class_type ape --train True
    ```
 ## Testing
 
@@ -71,12 +71,12 @@ Take the training on `cat` as an example.
 
 We provide the pretrained models of objects on Linemod, which can be found at [here](https://ussteducn-my.sharepoint.com/:f:/g/personal/wuchenrui_usst_edu_cn/EuhOxm1AAOhAh108zNxiZ7UBab41UGRtjX6Z1jw0xQcGEg?e=US6rWq).
 
-Take the testing on `cat` as an example.
+Take the testing on `ape` as an example.
 
 
-1. Download the pretrained model of `cat` and put it to `$ROOT/model/cat/200.pkl`.
+1. Download the pretrained model of `ape` and put it to `$ROOT/model/ape/200.pkl`.
 2. Test:
     ```
-    python main_psgmn.py --class_type cat --eval True
-    python main_psgmn.py --class_type cat --occ True --eval True
+    python main_psgmn.py --class_type ape --eval True
+    python main_psgmn.py --class_type ape --occ True --eval True
     ```
